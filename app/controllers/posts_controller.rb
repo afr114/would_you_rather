@@ -31,16 +31,25 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-
   def destroy
     @post.destroy()
     redirect_to posts_path
   end
 
+  def upvote
+    @post.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @post.downvote_by current_user
+    redirect_to :back
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:option_a_title, :option_b_title, :explanation, :user_id)
+    params.require(:post).permit(:option_a_title, :option_b_title, :explanation, :user_id, :image, :image_url)
   end
 
   def find_post

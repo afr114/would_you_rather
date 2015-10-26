@@ -9,18 +9,41 @@
             <div class="row">
               <div class="col-md-6">
                 <%= f.input :option_a_title, :required => false, label: 'Option A', html: { class: 'control-label' } %>
-              </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <%= f.input :image, label: 'Upload an Image', as: :file %>
+                    </div>
+                    <div class="col-md-2">
+                      <strong>OR</strong>
+                    </div>
+                    <div class="col-md-6">
+                      <%=f.input :image_url, label: 'Link an Image'%>
+                    </div>
+                  </div>
+               </div>
               <div class="col-md-6">
                 <%= f.input :option_b_title, :required => false, label: 'Option B', html: { class: 'control-label' } %>
+               <div class="row">
+                 <div class="col-md-4">
+                   <%= f.input :image, label: 'Upload an Image', as: :file %>
+                 </div>
+                 <div class="col-md-2">
+                   <strong>OR</strong>
+                 </div>
+                 <div class="col-md-6">
+                   <%=f.input :image_url, label: 'Link an Image' %>
+                 </div>
+               </div>
+            </div>
               </div>
             </div>
-          </div>
           <div class="form-group">
-            <%= f.input :explanation, as: :text, html: { class: 'control-label' } %>
+            <%= f.input :explanation, as: :text, html: { class: 'control-label' }, label: 'Optional: Write an explanation' %>
           </div>
           <div class="form-group">
             <%= f.button :submit %>
           </div>
+        </div>
         <% end %>
       </div>
   </div>
