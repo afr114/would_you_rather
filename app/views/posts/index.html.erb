@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+<div class="panel panel-default box-shadow--2dp">
+  <div class="options">
+  <%= post.option_a_title %>
+  <%= post.option_b_title %>
+  </div>
+  <%= post.explanation if post.explanation %>
+  <%= link_to 'Edit Post', edit_post_path(post) %>
+  <%= link_to 'Delete Post', post_path(post), method: 'delete' %>
+</div>
+<% end %>

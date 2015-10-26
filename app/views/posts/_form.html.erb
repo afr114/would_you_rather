@@ -1,0 +1,27 @@
+<div class="col-md-12 form">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3><%= title %></h3>
+    </div>
+      <div class="panel-body">
+        <%= simple_form_for @post do |f| %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :option_a_title, :required => false, label: 'Option A', html: { class: 'control-label' } %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :option_b_title, :required => false, label: 'Option B', html: { class: 'control-label' } %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.input :explanation, as: :text, html: { class: 'control-label' } %>
+          </div>
+          <div class="form-group">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
