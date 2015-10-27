@@ -1,0 +1,3 @@
+$('.form').hide();
+$('.container').append('<%= j render "post" %>')
+$('.container').append('<%= j link_to "Ask", new_post_path, class: "button-red", id: "new-post", remote: true %>')

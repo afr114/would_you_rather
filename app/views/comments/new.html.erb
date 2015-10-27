@@ -1,13 +1,1 @@
-<div class="col-md-12 form">
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <h3>Add a Comment</h3>
-    </div>
-    <div class="panel-body">
-      <%= simple_form_for [@post, @comment] do |f| %>
-        <%= f.input :content, :required => false, label: 'Comment:', html: { class: 'control-label' } %>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'form' %>

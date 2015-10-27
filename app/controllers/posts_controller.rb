@@ -11,24 +11,34 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def create
     @post = Post.new(post_params)
-    if @post.save
-      flash[:success] = "Post was created successfully"
-      redirect_to posts_path
-    else
-      render 'new'
+    @post.save
+    respond_to do |format|
+        format.js
+        format.html { redirect_to posts_path, flash[:success] = "Post was created successfully" }
     end
   end
 
   def edit
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def update
     @post.update(post_params)
-    redirect_to posts_path
+    respond_to do |format|
+      format.js
+      format.html { redirect_to posts_path, flash[:success] = "Post was updated successfully" }
+    end
   end
 
   def destroy

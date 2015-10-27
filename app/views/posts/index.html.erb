@@ -1,15 +1,15 @@
-<div class = "container">
+<div class="container">
   <% @posts.each do |post| %>
   <div class="panel panel-default box-shadow--2dp">
     <h1 class="post-title">Would you rather</h1>
     <div class="row">
-      <div class="col-md-4 text-center">
+      <div class="col-md-3 text-center">
         <%= image_tag post.image.url(:medium), class: "img-thumbnail" %>
         <div class="caption">
           <%= post.option_a_title %>
         </div>
       </div>
-      <div class="col-md-3 text-center">
+      <div class="col-md-2 text-center">
         <p>OR</p>
           <%= link_to like_post_path(post),  method: :put do %>
           <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -20,12 +20,18 @@
           <%= post.get_downvotes.size %>
           <% end %>
       </div>
-      <div class="col-md-4 text-center">
+      <div class="col-md-3 text-center">
         <%= image_tag post.image.url(:medium), class: "img-thumbnail"%>
         <div class="caption">
           <%= post.option_b_title%>
         </div>
       </div>
+      <div class="col-md-4 text-center" id="post-comments">
+        <p>Comments:</p>
+        <% post.comments.each do |comment| %>
+        <%= comment.content %> by <%= comment.user.email %>
+      </div>
+      <% end %>
     </div>
     <div class="form-group">
       <div class="explanation">
@@ -33,10 +39,11 @@
       </div>
     </div>
     <div class="form-group homepage">
-      <%= link_to 'Edit Post', edit_post_path(post), class: "button" %>
+      <%= link_to 'Edit Post', edit_post_path(post), class: "button", remote: true %>
       <%= link_to 'Delete Post', post_path(post), method: 'delete', class: "button" %>
+      <%= link_to 'Add a comment', new_post_comment_path(post), class: "button pull-right", remote: true %>
     </div>
   </div>
   <% end %>
-    <%= link_to 'Ask', new_post_path, class: "button-red" %>
+    <%= link_to 'Ask', new_post_path, class: "button-red", id: "new-post", remote: true %>
 </div>
