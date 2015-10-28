@@ -14,12 +14,26 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ // *{
+ //   border: 1px dotted black;
+ // }
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+ a#new-post {
+   background: #E74C3C;
+   color: #FFFFFF;
+   margin: 10px;
+
+ }
 .panel.panel-info {
   margin: 0 15%;
 }
 
 .box-shadow--2dp {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    padding: 20px;
 }
 
 .group {
@@ -33,7 +47,13 @@
 }
 
 .post-title{
-  margin: 15px 0 20px 25px;
+  margin: 5px 0 10px 25px;
+}
+
+.post-title-option{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px 0 0 0;
 }
 
 .button {
@@ -78,6 +98,32 @@ a.button.pull-right {
   margin-right: 2%;
 }
 
-.flex{
-  display: inline-flex;
+
+#post-comments{
+  vertical-align: top;
+  border-left: 3px solid #eee;
+}
+
+.right{
+  float: left;
+  text-align: center;
+  width: 70%;
+  display: inline-block;
+  border-right: 1px dotted gray;
+}
+
+.left{
+  margin-left: 2%;
+  display: inline-block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.edit-post-buttons{
+  margin: 0 0 0 20px;
+}
+
+.vote-count{
+  margin: 0 0 10px 0;
+  color: #A59999
 }

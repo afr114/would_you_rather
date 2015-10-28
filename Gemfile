@@ -12,6 +12,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'acts_as_votable'
+gem 'hirb'
 
 group :development do
   gem 'byebug'

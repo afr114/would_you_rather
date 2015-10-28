@@ -1,58 +1,47 @@
 <div class="container">
   <% @posts.each do |post| %>
-  <div class="panel panel-default box-shadow--2dp">
-    <h1 class="post-title">Would you rather</h1>
-    <div class="row">
-      <div class="col-md-3 text-center">
-        <%= image_tag post.image.url(:medium), class: "img-thumbnail" %>
-        <div class="caption">
-          <%= post.option_a_title %>
+  <div class="panel panel-default box-shadow--2dp clearfix">
+    <div class="right">
+      <h1 class="post-title text-left">Would you rather...</h1>
+        <div class="choicebox">
+            <%= link_to like_post_path(post), method: :put do %>
+            Choose Option A
+            <% end %>
+          <div class="choicebox-left">
+            <% if post.image_url %>
+            <%= image_tag post.image_url, class: "img-thumbnail img-responsive" %>
+            <% else %>
+            <%= image_tag post.image.url(:medium), class: "img-thumbnail img-responsive" %>
+            <% end %>
+            <p class="post-title-option"><%= post.option_a_title %></p>
+            <p class="vote-count">Current Votes: <%= post.get_likes.size %></p>
+          </div>
+            <%= link_to dislike_post_path(post), method: :put do %>
+            Choose Option B
+            <% end %>
+          <div class="choicebox-right">
+            <% if post.image_url %>
+            <%= image_tag post.image_url, class: "img-thumbnail img-responsive" %>
+            <% else %>
+            <%= image_tag post.image.url(:medium), class: "img-thumbnail img-responsive" %>
+            <% end %>
+            <p class="post-title-option"><%= post.option_b_title%></p>
+            <p class="vote-count">Current Votes: <%= post.get_dislikes.size %></p>
+            <p class="explanation well text-left"><%= post.explanation if post.explanation %></p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-2 text-center">
-        <p>OR</p>
-          <%= link_to like_post_path(post),  method: :put do %>
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-          <%= post.get_upvotes.size %>
-          <% end %>|
-          <%= link_to dislike_post_path(post), method: :put do %>
-          <span class="glyphicon glyphicon-thumbs-down"></span>
-          <%= post.get_downvotes.size %>
-          <% end %>
-      </div>
-      <div class="col-md-3 text-center">
-        <%= image_tag post.image.url(:medium), class: "img-thumbnail"%>
-        <div class="caption">
-          <%= post.option_b_title%>
-        </div>
-      </div>
-      <div class="col-md-4 text-center" id="post-comments">
-        <p>Comments:</p>
-        <% post.comments.each do |comment| %>
-        <p><%= comment.content %> by <%= comment.user.email %></p>
-      </div>
-    </div>
-    <% end %>
-    <div class="form-group">
-      <div class="explanation">
-      <%= post.explanation if post.explanation %>
-      </div>
-    </div>
-
-
-
-    <div class="form-group homepage">
-      <div class="row">
-        <div class="col-md-6">
+        <div class="edit-post-buttons text-left">
           <%= link_to 'Edit Post', edit_post_path(post), class: "button", remote: true %>
           <%= link_to 'Delete Post', post_path(post), method: 'delete', class: "button" %>
         </div>
-         <div class="col-md-6">
-          <%= link_to 'Add a comment', new_post_comment_path(post), class: "button pull-", remote: true %>
-        </div>
       </div>
-    </div>
+      <div class="left">
+        <p>Comments:</p>
+        <% post.comments.each do |comment| %>
+        <p><%= comment.content %> by <%= comment.user.email %></p>
+        <% end %>
+        <%= link_to 'Add a comment', new_post_comment_path(post), remote: true %>
+      </div>
   </div>
   <% end %>
 </div>
-<%= link_to 'Ask', new_post_path, class: "button-red", id: "new-post", remote: true %>
